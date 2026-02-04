@@ -22,7 +22,10 @@ if (isset($_POST['idPengguna'])) {
     if ($rows == 1) {
         $_SESSION['idPengguna'] = $idPengguna;
         // Redirect to user dashboard page
-        header("Location: dashboard.php");
+        echo "<script>
+            alert('Log Masuk Berjaya!');
+            window.location.href='dashboard.php';
+        </script>";
     } else {
         $error_msg = "ID Pengguna atau Kata Laluan salah.";
     }

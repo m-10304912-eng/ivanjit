@@ -22,7 +22,10 @@ if (isset($_POST['idPengguna'])) {
         $query = "INSERT INTO `Pengguna_1` (idPengguna, namaPengguna, kataLaluan) VALUES ('$idPengguna', '$namaPengguna', '$kataLaluan')";
         $result = mysqli_query($conn, $query);
         if ($result) {
-            $success_msg = "Pendaftaran berjaya! Anda kini boleh <a href='login.php' class='underline'>Log Masuk</a>";
+            echo "<script>
+                alert('Pendaftaran Berjaya! Sila log masuk.');
+                window.location.href='login.php';
+            </script>";
         } else {
             $error_msg = "Pendaftaran gagal. Sila cuba lagi.";
         }
