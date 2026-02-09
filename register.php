@@ -12,22 +12,27 @@ if (isset($_POST['idPengguna'])) {
     $kataLaluan = stripslashes($_REQUEST['kataLaluan']);
     $kataLaluan = mysqli_real_escape_string($conn, $kataLaluan);
 
-    // Check if ID exists
-    $check_query = "SELECT * FROM `Pengguna_1` WHERE idPengguna='$idPengguna'";
-    $check_result = mysqli_query($conn, $check_query);
-    
-    if (mysqli_num_rows($check_result) > 0) {
-        $error_msg = "ID Pengguna sudah wujud.";
+    // Validate ID format: 1 alphabet + 4 numbers (e.g., D6557)
+    if (!preg_match('/^[A-Za-z]\d{4}$/', $idPengguna)) {
+        $error_msg = "Format ID Pengguna tidak sah. Mesti bermula dengan 1 huruf diikuti 4 nombor (contoh: D6557).";
     } else {
-        $query = "INSERT INTO `Pengguna_1` (idPengguna, namaPengguna, kataLaluan) VALUES ('$idPengguna', '$namaPengguna', '$kataLaluan')";
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            echo "<script>
-                alert('Pendaftaran Berjaya! Sila log masuk.');
-                window.location.href='login.php';
-            </script>";
+        // Check if ID exists
+        $check_query = "SELECT * FROM `Pengguna_1` WHERE idPengguna='$idPengguna'";
+        $check_result = mysqli_query($conn, $check_query);
+        
+        if (mysqli_num_rows($check_result) > 0) {
+            $error_msg = "ID Pengguna sudah wujud.";
         } else {
-            $error_msg = "Pendaftaran gagal. Sila cuba lagi.";
+            $query = "INSERT INTO `Pengguna_1` (idPengguna, namaPengguna, kataLaluan) VALUES ('$idPengguna', '$namaPengguna', '$kataLaluan')";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                echo "<script>
+                    alert('Pendaftaran Berjaya! Sila log masuk.');
+                    window.location.href='login.php';
+                </script>";
+            } else {
+                $error_msg = "Pendaftaran gagal. Sila cuba lagi.";
+            }
         }
     }
 }
@@ -81,7 +86,8 @@ if (isset($_POST['idPengguna'])) {
         <form class="px-8 pb-10 space-y-4" method="post">
             <div class="space-y-1">
                 <label class="text-xs font-bold uppercase text-gray-600 dark:text-gray-300 ml-1">ID Pengguna</label>
-                <input class="block w-full px-4 py-3 border border-gray-200 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none" name="idPengguna" placeholder="cth. D1234" type="text" required />
+                <input class="block w-full px-4 py-3 border border-gray-200 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none" name="idPengguna" placeholder="cth. D6557" type="text" pattern="[A-Za-z]\d{4}" title="Format: 1 huruf + 4 nombor (contoh: D6557)" required />
+                <p class="text-xs text-gray-500 dark:text-gray-400 ml-1">Format: 1 huruf diikuti 4 nombor</p>
             </div>
             
             <div class="space-y-1">

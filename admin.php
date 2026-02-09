@@ -81,6 +81,9 @@ if (isset($_GET['edit'])) {
             Panel Admin
         </h1>
         <div class="flex gap-2">
+            <a href="admin_results.php" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
+                <span class="material-symbols-outlined">poll</span> Keputusan
+            </a>
             <a href="dashboard.php" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
                 <span class="material-symbols-outlined">dashboard</span> Papan Utama
             </a>
