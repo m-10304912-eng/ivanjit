@@ -21,11 +21,18 @@ if (isset($_POST['idPengguna'])) {
     $rows = mysqli_num_rows($result);
     if ($rows == 1) {
         $_SESSION['idPengguna'] = $idPengguna;
-        // Redirect to user dashboard page
-        echo "<script>
-            alert('Log Masuk Berjaya!');
-            window.location.href='dashboard.php';
-        </script>";
+        // Redirect logic based on user type
+        if (in_array($idPengguna, ['D6290', 'admin'])) {
+            echo "<script>
+                // alert('Log Masuk Admin Berjaya!'); // Optional: suppress alert for smoother exp
+                window.location.href='admin.php';
+            </script>";
+        } else {
+            echo "<script>
+                alert('Log Masuk Berjaya!');
+                window.location.href='dashboard.php';
+            </script>";
+        }
     } else {
         $error_msg = "ID Pengguna atau Kata Laluan salah.";
     }

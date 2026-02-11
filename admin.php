@@ -64,7 +64,7 @@ if (isset($_GET['edit'])) {
         darkMode: "class",
         theme: {
             extend: {
-                colors: { "primary": "#11d411", "background-light": "#f6f8f6", "background-dark": "#102210" },
+                colors: { "primary": "#6366f1", "background-light": "#f8fafc", "background-dark": "#0f172a" },
                 fontFamily: { "display": ["Lexend", "sans-serif"] },
             },
         },
@@ -81,8 +81,8 @@ if (isset($_GET['edit'])) {
             Panel Admin
         </h1>
         <div class="flex gap-2">
-            <a href="admin_results.php" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
-                <span class="material-symbols-outlined">poll</span> Keputusan
+            <a href="admin_results.php" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
+                <span class="material-symbols-outlined">analytics</span> Keputusan
             </a>
             <a href="dashboard.php" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
                 <span class="material-symbols-outlined">dashboard</span> Papan Utama
@@ -133,8 +133,12 @@ if (isset($_GET['edit'])) {
                     </div>
 
                     <div class="flex gap-2">
-                        <button type="submit" name="update_candidate" class="w-full bg-primary hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Kemas Kini</button>
-                        <a href="admin.php" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded text-center">Batal</a>
+                        <button type="submit" name="update_candidate" class="w-full bg-primary hover:bg-green-600 text-white font-bold py-2 px-4 rounded flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">save</span> Kemas Kini
+                        </button>
+                        <a href="admin.php" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded text-center flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">cancel</span> Batal
+                        </a>
                     </div>
                 </form>
             </div>
@@ -175,7 +179,7 @@ if (isset($_GET['edit'])) {
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 w-10 h-10">
                                             <?php if($row['gambar']) { ?>
-                                            <img class="w-full h-full rounded-full object-cover" src="<?php echo $row['gambar']; ?>" />
+                                            <img class="w-full h-full rounded-full object-cover" src="<?php echo $row['gambar']; ?>" onerror="this.src='https://ui-avatars.com/api/?name=<?php echo urlencode($row['namaCalon']); ?>&background=random'" />
                                             <?php } else { ?>
                                             <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-xs">N/A</div>
                                             <?php } ?>
@@ -194,8 +198,12 @@ if (isset($_GET['edit'])) {
                                 </td>
                                 <td class="px-5 py-4 border-b border-gray-200 text-sm text-center">
                                     <div class="flex justify-center gap-2">
-                                        <a href="admin.php?edit=<?php echo $row['idCalon']; ?>" class="text-blue-600 hover:text-blue-900 border border-blue-200 rounded px-3 py-1 text-xs font-bold hover:bg-blue-50">Edit</a>
-                                        <a href="admin.php?delete=<?php echo $row['idCalon']; ?>" onclick="return confirm('Padam calon ini?');" class="text-red-600 hover:text-red-900 border border-red-200 rounded px-3 py-1 text-xs font-bold hover:bg-red-50">Padam</a>
+                                        <a href="admin.php?edit=<?php echo $row['idCalon']; ?>" class="text-blue-600 hover:text-blue-900 border border-blue-200 rounded px-3 py-1 text-xs font-bold hover:bg-blue-50 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">edit</span> Edit
+                                        </a>
+                                        <a href="admin.php?delete=<?php echo $row['idCalon']; ?>" onclick="return confirm('Padam calon ini?');" class="text-red-600 hover:text-red-900 border border-red-200 rounded px-3 py-1 text-xs font-bold hover:bg-red-50 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">delete</span> Padam
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

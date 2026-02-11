@@ -97,6 +97,15 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
                     <span class="text-sm font-medium">Keputusan</span>
                 </a>
             </nav>
+            
+            <?php if(in_array($idPengguna, ['D6290', 'admin'])) { ?>
+            <div class="px-4 mt-6">
+                <a href="admin.php" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors border border-red-500/20">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                    <span class="text-sm font-bold">Panel Admin</span>
+                </a>
+            </div>
+            <?php } ?>
         </div>
         <!-- Bottom Nav -->
         <div class="flex flex-col gap-2 pt-6 border-t border-white/10">
@@ -140,8 +149,17 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
                 </div>
                 <div class="shrink-0 flex gap-2">
                     <div class="flex flex-col items-center justify-center bg-primary/10 px-6 py-2 rounded-lg border border-primary/20">
-                        <span class="text-xs font-bold text-primary uppercase tracking-widest">Status</span>
-                        <span class="text-sm font-black text-primary"><?php echo $has_voted ? 'DIUNDI' : 'BUKA'; ?></span>
+                        <span class="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-1">
+                             Status <span class="material-symbols-outlined text-[10px]">info</span>
+                        </span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-black text-primary"><?php echo $has_voted ? 'DIUNDI' : 'BUKA'; ?></span>
+                            <?php if($has_voted) { ?>
+                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                            <?php } else { ?>
+                                <span class="material-symbols-outlined text-primary text-sm">radio_button_unchecked</span>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
