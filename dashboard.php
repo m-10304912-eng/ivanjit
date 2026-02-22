@@ -29,7 +29,7 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>FC Committee Voting Dashboard</title>
+<title>Papan Undian - Kelab Bola Sepak</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -70,8 +70,8 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
                     <span class="material-symbols-outlined text-deep-green font-bold">sports_soccer</span>
                 </div>
                 <div class="flex flex-col">
-                    <h1 class="text-lg font-bold leading-tight uppercase tracking-wider">Undian FC</h1>
-                    <p class="text-primary text-xs font-semibold">Portal Kelab 2024</p>
+                    <h1 class="text-lg font-bold leading-tight uppercase tracking-wider">Kelab Bola Sepak</h1>
+                    <p class="text-primary text-xs font-semibold">Portal Undian 2024</p>
                 </div>
             </div>
             <!-- Nav Categories -->
@@ -130,7 +130,7 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
         <!-- Top Navigation Bar (Mobile) -->
         <header class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-8 py-4 flex items-center justify-between md:hidden">
             <div class="flex items-center gap-4">
-               <h1 class="text-lg font-bold">Undian FC</h1>
+               <h1 class="text-lg font-bold text-right">Kelab Bola Sepak</h1>
             </div>
             <a href="logout.php" class="text-red-500 font-bold text-sm">Log Keluar</a>
         </header>
@@ -139,10 +139,10 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
         <div class="px-8 pt-8 pb-4">
             <div class="bg-white dark:bg-white/5 border border-gray-100 dark:border-gray-800 rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-sm">
                 <div class="flex-1">
-                    <h3 class="text-2xl font-black mb-2 flex items-center gap-2">
+                    <h3 class="text-2xl font-black mb-2 flex items-center gap-2 justify-end">
                         <?php echo $current_pos_name; ?> <span class="text-accent-gold material-symbols-outlined">military_tech</span>
                     </h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm max-w-2xl">
+                    <p class="text-gray-500 dark:text-gray-400 text-sm max-w-2xl text-right ml-auto">
                         Sila pilih calon kegemaran anda. 
                         <span class="font-bold text-deep-green dark:text-white underline decoration-primary decoration-2">Satu undi bagi setiap jawatan sahaja.</span>
                     </p>
@@ -164,13 +164,13 @@ $has_voted = mysqli_num_rows($res_check_vote) > 0;
                 </div>
             </div>
             <?php if(isset($_GET['success'])): ?>
-            <div class="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <div class="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-right" role="alert">
                 <strong class="font-bold">Berjaya!</strong>
-                <span class="block sm:inline">Undian anda telah direkodkan.</span>
+                <span class="block sm:inline">Undian anda telah direkodkan dengan jayanya.</span>
             </div>
             <?php endif; ?>
              <?php if(isset($_GET['error'])): ?>
-            <div class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <div class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-right" role="alert">
                 <strong class="font-bold">Ralat!</strong>
                 <span class="block sm:inline"><?php echo htmlspecialchars($_GET['error']); ?></span>
             </div>

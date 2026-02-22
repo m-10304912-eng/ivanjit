@@ -14,14 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) > 0) {
         // Already voted
-        header("Location: dashboard.php?pos=$idJawatan&error=You already voted for this position.");
+        header("Location: dashboard.php?pos=$idJawatan&error=Anda sudah mengundi untuk jawatan ini.");
     } else {
         // Insert vote
         $insert_query = "INSERT INTO Undian_1 (idPengguna, idJawatan, idCalon, ip_address) VALUES ('$idPengguna', '$idJawatan', '$idCalon', '$ip_address')";
         if (mysqli_query($conn, $insert_query)) {
             header("Location: dashboard.php?pos=$idJawatan&success=1");
         } else {
-            header("Location: dashboard.php?pos=$idJawatan&error=Database error.");
+            header("Location: dashboard.php?pos=$idJawatan&error=Ralat pangkalan data. Sila cuba lagi.");
         }
     }
 } else {
