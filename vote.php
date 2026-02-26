@@ -4,9 +4,14 @@ require('db_config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idPengguna = $_SESSION['idPengguna'];
-    $idJawatan = mysqli_real_escape_string($conn, $_POST['idJawatan']);
-    $idCalon = mysqli_real_escape_string($conn, $_POST['idCalon']);
+    $idJawatan = isset($_POST['idJawatan']) ? mysqli_real_escape_string($conn, $_POST['idJawatan']) : '';
+    $idCalon = isset($_POST['idCalon']) ? mysqli_real_escape_string($conn, $_POST['idCalon']) : '';
     $ip_address = $_SERVER['REMOTE_ADDR'];
+
+    if(empty($idJawatan) || empty($idCalon)) {
+         header("Location: dashboard.php?error=Data undian tidak lengkap.");
+         exit();
+    }
 
     // Double check if already voted
     $check_query = "SELECT * FROM Undian_1 WHERE idPengguna='$idPengguna' AND idJawatan='$idJawatan'";
